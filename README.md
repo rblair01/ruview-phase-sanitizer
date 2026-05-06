@@ -7,48 +7,46 @@
 
 ---
 
-### Goal
+### Visualization Example
 
-Improve WiFi CSI phase quality for better human pose estimation by implementing the phase sanitization techniques from the DensePose From WiFi paper.
+![Phase Sanitization Comparison](phase_comparison_example.jpg)
+
+*Left: Raw noisy CSI phase*  *Right: Sanitized phase using method from the paper*
+
+---
 
 ### Features
 
-- Phase unwrapping + median filtering (core method from the paper)
+- Implements phase unwrapping + median filtering from the *DensePose From WiFi* paper
 - Saves **full raw and sanitized phase arrays** in JSON format
-- Ready for real Intel 5300 CSI data (research mode)
-- High-quality comparison plots (Raw vs Sanitized)
-- Easy to extend for multi-view fusion (2+ sensors/laptops)
-
-### Project Structure
-
-ruview-phase-sanitizer/
-├── phase_sanitizer_real.py     # Main script (simulation + real CSI ready)
-├── run.sh                      # One-command launcher
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── phase_data/                 # JSON files with full phase arrays
-├── phase_plots/                # Generated comparison images
-└── notebooks/                  # Analysis notebooks
+- Ready for real Intel 5300 CSI data (research mode on ThinkPad T420)
+- High-quality comparison plots
+- Designed for future multi-view fusion (2+ laptops/sensors)
 
 ### Quick Start
 
 ```bash
-# 1. Start RuView (simulation mode)
+# Terminal 1 - Start RuView
 docker run -p 3000:3000 --name ruview --rm ruvnet/wifi-densepose:latest
 
-# 2. In another terminal, run the sanitizer
+# Terminal 2 - Start Phase Sanitizer
 source ~/ruview_venv/bin/activate
 cd ~/ruview-phase-sanitizer
 ./run.sh
 
-Open http://localhost:3000 to see the RuView dashboard.UsagePlots are saved in phase_plots/
-Full phase data (raw + sanitized) is saved in phase_data/
-When Intel 5300 hardware is ready, the script is already structured to accept real CSI data.
+Open http://localhost:3000 to see the RuView dashboard.Project Structure
+
+ruview-phase-sanitizer/
+├── phase_sanitizer_real.py     # Main script
+├── run.sh                      # Easy launcher
+├── README.md
+├── requirements.txt
+├── phase_data/                 # Full JSON phase arrays
+├── phase_plots/                # Generated comparison images
+└── notebooks/
 
 AttributionThis work builds directly on:RuView by ruvnet
 "DensePose From WiFi" paper
 
-LicenseMIT License — see LICENSE for details.Made for the WiFi sensing community.
+LicenseMIT License — see LICENSEMade for the WiFi sensing community.
 
-dbe2925 (Update README.md with improved documentation and instructions)
