@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ruview_venv/
+phase_plots/
+.vscode/
+.DS_Store
+*.log
