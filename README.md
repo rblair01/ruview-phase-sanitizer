@@ -17,36 +17,57 @@
 
 ### Features
 
-- Implements phase unwrapping + median filtering from the *DensePose From WiFi* paper
+- Phase unwrapping + median filtering (core technique from the paper)
 - Saves **full raw and sanitized phase arrays** in JSON format
 - Ready for real Intel 5300 CSI data (research mode on ThinkPad T420)
 - High-quality comparison plots
-- Designed for future multi-view fusion (2+ laptops/sensors)
+- Structured for multi-view fusion (2+ laptops/sensors)
 
-### Quick Start
+### Installation & Quick Start
 
 ```bash
-# Terminal 1 - Start RuView
-docker run -p 3000:3000 --name ruview --rm ruvnet/wifi-densepose:latest
+# 1. Clone this repo
+git clone https://github.com/rblair01/ruview-phase-sanitizer.git
+cd ruview-phase-sanitizer
 
-# Terminal 2 - Start Phase Sanitizer
+# 2. Create virtual environment
+python3 -m venv ~/ruview_venv
 source ~/ruview_venv/bin/activate
-cd ~/ruview-phase-sanitizer
+pip install -r requirements.txt
+
+# 3. Start RuView (simulation mode)
+docker run -p 3000:3000 --name ruview --rm ruvnet/wifi-densepose:latest &
+
+# 4. Start Phase Sanitizer
 ./run.sh
 
-Open http://localhost:3000 to see the RuView dashboard.Project Structure
+Open http://localhost:3000 to see the RuView Observatory.Hardware Setup Guide (ThinkPad T420 + Intel 5300)When your hardware arrives:Install Intel 5300 3×3 MIMO card + 3 external antennas + reflector
+Install Ubuntu 20.04/22.04 on the T420
+Install CSI Tool (iwl-csi)
+Update the data source in phase_sanitizer_real.py (the script is already prepared for it)
+Run both RuView and the sanitizer
+
+Full hardware guide coming soon in docs/hardware.md.Future RoadmapShort-term: Real Intel 5300 CSI integration
+Medium-term: Multi-view fusion (2+ laptops pointing at the same area)
+Long-term: Real-time sanitized CSI streaming back into RuView
+Jupyter notebooks for training and analysis
+Transfer learning from the DensePose model
+Support for multi-person through-wall scenarios
+
+Project Structure
 
 ruview-phase-sanitizer/
 ├── phase_sanitizer_real.py     # Main script
 ├── run.sh                      # Easy launcher
 ├── README.md
 ├── requirements.txt
-├── phase_data/                 # Full JSON phase arrays
-├── phase_plots/                # Generated comparison images
-└── notebooks/
+├── .gitignore
+├── phase_data/                 # JSON with full phase arrays
+├── phase_plots/                # Comparison images
+└── notebooks/                  # Analysis notebooks
 
 AttributionThis work builds directly on:RuView by ruvnet
 "DensePose From WiFi" paper
 
-LicenseMIT License — see LICENSEMade for the WiFi sensing community.
+LicenseMIT License — see LICENSE for details.Made for the WiFi sensing community.
 
