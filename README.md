@@ -38,4 +38,4 @@ source ~/ruview_venv/bin/activate
 cd ~/ruview-phase-sanitizer
 python phase_sanitizer_real.py
 
-LicenseMIT License (same as RuView)Made with  for the WiFi sensing community.
+LicenseMIT License (same as RuView)Made with <3 for the WiFi sensing community.
