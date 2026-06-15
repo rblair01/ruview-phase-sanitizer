@@ -19,7 +19,6 @@
 
 - Phase unwrapping + median filtering (core technique from the paper)
 - Saves **full raw and sanitized phase arrays** in JSON format
-- Ready for real Intel 5300 CSI data (research mode on ThinkPad T420)
 - High-quality comparison plots
 - Structured for multi-view fusion (2+ laptops/sensors)
 
@@ -41,13 +40,17 @@ docker run -p 3000:3000 --name ruview --rm ruvnet/wifi-densepose:latest &
 # 4. Start Phase Sanitizer
 ./run.sh
 
-Open http://localhost:3000 to see the RuView Observatory.Hardware Setup Guide (ThinkPad T420 + Intel 5300)When your hardware arrives:Install Intel 5300 3×3 MIMO card + 3 external antennas + reflector
+Open http://localhost:3000 to see the RuView Observatory.
+Hardware Setup Guide
 Install Ubuntu 20.04/22.04 on the T420
 Install CSI Tool (iwl-csi)
 Update the data source in phase_sanitizer_real.py (the script is already prepared for it)
 Run both RuView and the sanitizer
 
-Full hardware guide coming soon in docs/hardware.md.Future RoadmapShort-term: Real Intel 5300 CSI integration
+Full hardware guide coming soon in docs/hardware.md.
+
+Future Roadmap
+Short-term: ESP32 nodes
 Medium-term: Multi-view fusion (2+ laptops pointing at the same area)
 Long-term: Real-time sanitized CSI streaming back into RuView
 Jupyter notebooks for training and analysis
@@ -66,8 +69,11 @@ ruview-phase-sanitizer/
 ├── phase_plots/                # Comparison images
 └── notebooks/                  # Analysis notebooks
 
-AttributionThis work builds directly on:RuView by ruvnet
+Attribution
+This work builds directly on:
+RuView by ruvnet
 "DensePose From WiFi" paper
 
-LicenseMIT License — see LICENSE for details.Made for the WiFi sensing community.
+License
+MIT License — see LICENSE for details.Made for the WiFi sensing community.
 
